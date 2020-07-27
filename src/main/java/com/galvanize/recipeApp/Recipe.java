@@ -58,16 +58,16 @@ public class Recipe {
         this.servings = servings;
     }
 
-    public Duration getCook_time() {
-        return cook_time;
+    public Long getCook_time() {
+        return cook_time.toMinutes();
     }
 
     public void setCook_time(Duration cook_time) {
         this.cook_time = cook_time;
     }
 
-    public Duration getPrep_time() {
-        return prep_time;
+    public Long getPrep_time() {
+        return prep_time.toMinutes();
     }
 
     public void setPrep_time(Duration prep_time) {
