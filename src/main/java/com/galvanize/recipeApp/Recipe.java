@@ -1,6 +1,6 @@
 package com.galvanize.recipeApp;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -12,19 +12,30 @@ import java.util.Set;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.Public.class)
     private Long id;
+    @JsonView(Views.Public.class)
     private String title;
+    @JsonView(Views.Public.class)
     private String description;
+    @JsonView(Views.Public.class)
     private int servings;
-    private Duration cook_time;
-    private Duration prep_time;
+    @JsonView(Views.Public.class)
+    private Duration cooktime;
+    @JsonView(Views.Public.class)
+    private Duration preptime;
     @ManyToMany
     @JoinTable(
             name="recipe_ingredient_join",
             joinColumns = @JoinColumn(name="recipe_id"),
             inverseJoinColumns = @JoinColumn(name="ingredient_id")
     )
+    @JsonView(Views.Public.class)
+    @JsonIgnoreProperties("recipes")
     private Set<Ingredient> ingredients;
+    private String imgURL;
+    private String recipeSteps;
+
 
     public Long getId() {
         return id;
@@ -58,20 +69,20 @@ public class Recipe {
         this.servings = servings;
     }
 
-    public Long getCook_time() {
-        return cook_time.toMinutes();
+    public Long getCooktime() {
+        return cooktime.toMinutes();
     }
 
-    public void setCook_time(Duration cook_time) {
-        this.cook_time = cook_time;
+    public void setCooktime(Duration cooktime) {
+        this.cooktime = cooktime;
     }
 
-    public Long getPrep_time() {
-        return prep_time.toMinutes();
+    public Long getPreptime() {
+        return preptime.toMinutes();
     }
 
-    public void setPrep_time(Duration prep_time) {
-        this.prep_time = prep_time;
+    public void setPreptime(Duration preptime) {
+        this.preptime = preptime;
     }
 
     public Set<Ingredient> getIngredients() {
@@ -80,5 +91,21 @@ public class Recipe {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public String getImgURL() {
+        return imgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        this.imgURL = imgURL;
+    }
+
+    public String getRecipeSteps() {
+        return recipeSteps;
+    }
+
+    public void setRecipeSteps(String recipeSteps) {
+        this.recipeSteps = recipeSteps;
     }
 }

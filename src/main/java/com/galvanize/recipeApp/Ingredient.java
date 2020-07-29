@@ -1,6 +1,6 @@
 package com.galvanize.recipeApp;
 
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.annotations.Generated;
 
 import javax.persistence.*;
@@ -11,13 +11,15 @@ import java.util.Set;
 public class Ingredient {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @JsonView(View.RecipeView.class)
-    private Long id;
-    @JsonView(View.RecipeView.class)
+    @JsonView(Views.Public.class)
+    public Long id;
+    @JsonView(Views.Public.class)
     private String name;
-    @JsonView(View.RecipeView.class)
+    @JsonView(Views.Public.class)
     private String type;
-    @ManyToMany
+    @ManyToMany(mappedBy = "ingredients")
+    @JsonView(Views.Public.class)
+    @JsonIgnoreProperties("ingredients")
     private Set<Recipe> recipes;
 
     public Long getId() {
