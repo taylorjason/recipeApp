@@ -33,7 +33,9 @@ public class Recipe {
     @JsonView(Views.Public.class)
     @JsonIgnoreProperties("recipes")
     private Set<Ingredient> ingredients;
+    @JsonView(Views.Public.class)
     private String imgURL;
+    @JsonView(Views.Public.class)
     private String recipeSteps;
 
 

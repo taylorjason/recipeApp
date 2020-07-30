@@ -2,10 +2,7 @@ package com.galvanize.recipeApp;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.data.repository.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.swing.text.html.Option;
 import java.util.HashMap;
@@ -14,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class IngredientController {
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;

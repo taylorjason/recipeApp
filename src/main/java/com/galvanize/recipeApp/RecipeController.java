@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 public class RecipeController {
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
@@ -18,8 +19,13 @@ public class RecipeController {
 
     @GetMapping("/recipes")
     public Iterable<Recipe> getRecipes(){
-
+        System.out.println("/recipes called");
         return this.recipeRepository.findAll();
+    }
+
+    @GetMapping("/recipes/{id}")
+    public Recipe getRecipe(@PathVariable Long id){
+        return this.recipeRepository.findById(id).get();
     }
 
     @GetMapping("/recipes/{id}/ingredients")
