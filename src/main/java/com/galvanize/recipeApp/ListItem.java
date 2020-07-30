@@ -1,18 +1,23 @@
 package com.galvanize.recipeApp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.dao.DataAccessException;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="shopping_item")
-public class ShoppingListItem {
+public class ListItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView(Views.Public.class)
     private Long id;
     @OneToOne
+    @JsonView(Views.listItems.class)
     private ShoppingList shoppingList;
     @OneToOne
+    @JsonView(Views.Public.class)
     private Ingredient ingredient;
 
     public Long getId() {

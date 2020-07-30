@@ -18,7 +18,7 @@ public class Ingredient {
     @JsonView(Views.Public.class)
     private String type;
     @ManyToMany(mappedBy = "ingredients")
-    @JsonView(Views.Public.class)
+    @JsonView(Views.Internal.class)
     @JsonIgnoreProperties("ingredients")
     private Set<Recipe> recipes;
 

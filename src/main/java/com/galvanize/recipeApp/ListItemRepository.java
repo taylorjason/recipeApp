@@ -2,5 +2,5 @@ package com.galvanize.recipeApp;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ShoppingListItemRepository extends CrudRepository<ShoppingListItem, Long> {
+public interface ListItemRepository extends CrudRepository<ListItem, Long> {
 }

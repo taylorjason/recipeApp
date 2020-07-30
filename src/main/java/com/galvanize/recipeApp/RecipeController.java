@@ -55,8 +55,6 @@ public class RecipeController {
             operator = "or";
         }
 
-        System.out.println(prepTime);
-
         if (operator.equals("or")) {
             return this.recipeRepository.findByPreptimeLessThanOrCooktimeLessThan(prepTime, cookTime);
         } else {
