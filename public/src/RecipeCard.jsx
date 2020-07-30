@@ -7,22 +7,36 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ShareIcon from '@material-ui/icons/Share';
-import { Avatar, IconButton, CardMedia } from '@material-ui/core';
+import { IconButton, CardMedia } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RecipeCard = (props) => {
-  const { avatarUrl, title, subtitle, description, imageUrl } = props;
+  const {
+    title,
+    description,
+    imgURL,
+    recipe_steps,
+    servings,
+    preptime,
+    cooktime
+  } = props;
+  let servingText = servings === undefined ? '' : 'Serves: ' + servings;
   return (
     <Card>
       <CardHeader
         action={
-          <IconButton aria-label="settings">g
+          <IconButton aria-label="settings">
             <ShareIcon />
           </IconButton>
         }
         title={title}
-        subheader={subtitle}
+        subheader={servingText}
       />
-      <CardMedia style={{ height: '150px' }} image={imageUrl} />
+      {imgURL ? (
+        <CardMedia style={{ height: '350px' }} image={imgURL} />
+      ) : (
+        <CircularProgress />
+      )}
       <CardContent>
         <Typography variant="body2" component="p">
           {description}
